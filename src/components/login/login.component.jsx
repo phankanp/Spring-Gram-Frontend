@@ -1,0 +1,80 @@
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+
+import "./login.css";
+import formLogo from "../../images/instagram.png";
+
+const Login = () => {
+  const [formData, setFormData] = useState({
+    username: "",
+    password: ""
+  });
+
+  const { username, password } = formData;
+
+  const onChange = e =>
+    setFormData({ ...formData, [e.target.username]: e.target.value });
+
+  const onSubmit = e => {
+    e.preventDefault();
+
+    console.log(formData);
+  };
+
+  return (
+    <div className="login-form d-flex align-items-center">
+      <div className="container">
+        <div className="row justify-content-md-center">
+          <div className="col-sm-4 border border-primary shadow rounded pt-2">
+            <div className="text-center">
+              <h1>Sign In!</h1>
+              <img src={formLogo} alt="registration from logo" />
+              <div>
+                <div class="col-sm-12 text-left">
+                  <form onSubmit={e => onSubmit(e)}>
+                    <div className="form-group">
+                      <label for="email">Email address</label>
+                      <input
+                        type="email"
+                        className="form-control"
+                        id="email"
+                        placeholder="Enter email"
+                        name="username"
+                        value={username}
+                        onChange={e => onChange(e)}
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label for="password">Password</label>
+                      <input
+                        type="password"
+                        className="form-control"
+                        id="password"
+                        placeholder="Password"
+                        name="password"
+                        value={password}
+                        onChange={e => onChange(e)}
+                      />
+                    </div>
+                    <button type="submit" className="btn btn-primary btn-block">
+                      Sign In
+                    </button>
+                    <small
+                      id="toRegister"
+                      className="form-text text-muted text-center"
+                    >
+                      Don't have an account?{" "}
+                      <Link to="/register">Click to register!</Link>
+                    </small>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Login;

@@ -1,0 +1,21 @@
+.login-form {
+  position: relative;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  height: 20px; /*requires explicit height*/
+}
+
+form button {
+  margin-bottom: 20px;
+}
+
+form label {
+  font-weight: bold;
+}
+
+#toRegister {
+  margin-bottom: 20px;
+}
