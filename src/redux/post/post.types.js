@@ -1,3 +1,6 @@
 export const postActionTypes = {
-  GET_POSTS: "GET_POSTS"
+  GET_POSTS: "GET_POSTS",
+  GET_IMAGE: "GET_IMAGE",
+  POST_ERROR: "POST_ERROR",
+  UPDATE_LIKES: "UPDATE_LIKES"
 };

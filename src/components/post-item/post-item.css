@@ -1,0 +1,54 @@
+.card {
+  width: 500px;
+  height: 640px;
+  margin-bottom: 20px;
+}
+
+.card-header {
+  background: transparent;
+}
+
+.card-footer {
+  background: transparent;
+}
+
+.card-title .card-text {
+  border: none;
+}
+
+.list-group {
+  padding: 0;
+}
+
+.list-group-item {
+  padding-left: 0;
+
+  border: none;
+}
+
+.fontAwesome {
+  margin-right: 6px;
+}
+
+.creation-date {
+  padding-bottom: 10px;
+}
+
+.btn-danger {
+  background: none;
+  color: red;
+  border-color: transparent;
+}
+
+.fontAwesomeTrashAlt {
+  color: black;
+}
+
+.heartFilled {
+  color: red;
+  cursor: pointer;
+}
+
+.emptyHeart {
+  cursor: pointer;
+}

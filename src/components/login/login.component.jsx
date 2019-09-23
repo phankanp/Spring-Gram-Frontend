@@ -1,10 +1,13 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { login } from "../../redux/auth/auth.actions";
 
 import "./login.css";
 import formLogo from "../../images/instagram.png";
 
-const Login = () => {
+const Login = ({ login, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     username: "",
     password: ""
@@ -13,13 +16,16 @@ const Login = () => {
   const { username, password } = formData;
 
   const onChange = e =>
-    setFormData({ ...formData, [e.target.username]: e.target.value });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const onSubmit = e => {
+  const onSubmit = async e => {
     e.preventDefault();
-
-    console.log(formData);
+    login(username, password);
   };
+
+  if (isAuthenticated) {
+    return <Redirect to="/homepage" />;
+  }
 
   return (
     <div className="login-form d-flex align-items-center">
@@ -30,10 +36,10 @@ const Login = () => {
               <h1>Sign In!</h1>
               <img src={formLogo} alt="registration from logo" />
               <div>
-                <div class="col-sm-12 text-left">
+                <div className="col-sm-12 text-left">
                   <form onSubmit={e => onSubmit(e)}>
                     <div className="form-group">
-                      <label for="email">Email address</label>
+                      <label htmlFor="email">Email address</label>
                       <input
                         type="email"
                         className="form-control"
@@ -45,7 +51,7 @@ const Login = () => {
                       />
                     </div>
                     <div className="form-group">
-                      <label for="password">Password</label>
+                      <label htmlFor="password">Password</label>
                       <input
                         type="password"
                         className="form-control"
@@ -77,4 +83,16 @@ const Login = () => {
   );
 };
 
-export default Login;
+Login.propTypes = {
+  login: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool
+};
+
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(
+  mapStateToProps,
+  { login }
+)(Login);

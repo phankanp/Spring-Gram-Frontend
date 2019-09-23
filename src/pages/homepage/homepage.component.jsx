@@ -1,13 +1,11 @@
 import React from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
 
-import { getPosts } from "../../redux/post/post.actions";
+import Post from "../../components/post/post.component";
 
 const HomePage = () => {
   return (
     <div>
-      <h1>HomePage</h1>
+      <Post />
     </div>
   );
 };

@@ -1,14 +1,15 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 import { setAlert } from "../../redux/alert/alert.actions";
+import { register } from "../../redux/auth/auth.actions";
 
 import "./register.css";
 import formLogo from "../../images/instagram.png";
 
-const Register = ({ setAlert }) => {
+const Register = ({ setAlert, register, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     username: "",
     alias: "",
@@ -27,9 +28,13 @@ const Register = ({ setAlert }) => {
     if (password !== confirmPassword) {
       setAlert("Passwords do not match", "danger");
     } else {
-      console.log(formData);
+      register({ username, alias, fullName, password, confirmPassword });
     }
   };
+
+  if (isAuthenticated) {
+    return <Redirect to="/login" />;
+  }
 
   return (
     <div className="register-form d-flex align-items-center">
@@ -43,7 +48,7 @@ const Register = ({ setAlert }) => {
                 <div className="col-sm-12 text-left">
                   <form onSubmit={e => onSubmit(e)}>
                     <div className="form-group">
-                      <label for="email">Email address</label>
+                      <label htmlFor="email">Email address</label>
                       <input
                         type="email"
                         className="form-control"
@@ -55,7 +60,7 @@ const Register = ({ setAlert }) => {
                       />
                     </div>
                     <div className="form-group">
-                      <label for="alias">Username</label>
+                      <label htmlFor="alias">Username</label>
                       <input
                         type="text"
                         className="form-control"
@@ -67,7 +72,7 @@ const Register = ({ setAlert }) => {
                       />
                     </div>
                     <div className="form-group">
-                      <label for="fullName">Full Name</label>
+                      <label htmlFor="fullName">Full Name</label>
                       <input
                         type="text"
                         className="form-control"
@@ -79,7 +84,7 @@ const Register = ({ setAlert }) => {
                       />
                     </div>
                     <div className="form-group">
-                      <label for="password">Password</label>
+                      <label htmlFor="password">Password</label>
                       <input
                         type="password"
                         className="form-control"
@@ -91,7 +96,7 @@ const Register = ({ setAlert }) => {
                       />
                     </div>
                     <div className="form-group">
-                      <label for="confirmPassword">Confirm Password</label>
+                      <label htmlFor="confirmPassword">Confirm Password</label>
                       <input
                         type="password"
                         className="form-control"
@@ -124,10 +129,16 @@ const Register = ({ setAlert }) => {
 };
 
 Register.propTypes = {
-  setAlert: PropTypes.func.isRequired
+  setAlert: PropTypes.func.isRequired,
+  register: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool
 };
 
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
+
 export default connect(
-  null,
-  { setAlert }
+  mapStateToProps,
+  { setAlert, register }
 )(Register);

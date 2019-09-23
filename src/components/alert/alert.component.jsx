@@ -9,9 +9,9 @@ const Alert = ({ alerts }) => {
     <div className="container">
       {alerts !== null &&
         alerts.length > 0 &&
-        alerts.map(alert => (
+        alerts.map((alert, i) => (
           <div
-            key={alert.id}
+            key={i}
             className={`alert alert-${alert.alertType}`}
             role="alert"
           >
