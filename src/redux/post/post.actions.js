@@ -38,14 +38,6 @@ export const getPosts = () => async dispatch => {
   }
 };
 
-async function getImage(imageId) {
-  return await axios
-    .get(`http://localhost:8080/api/post/${imageId}/image`, {
-      responseType: "arraybuffer"
-    })
-    .then(response => Buffer.from(response.data, "binary").toString("base64"));
-}
-
 export const addLike = postId => async dispatch => {
   try {
     const res = await axios.put(
@@ -65,6 +57,7 @@ export const addLike = postId => async dispatch => {
 };
 
 export const removeLike = postId => async dispatch => {
+  alert("test");
   try {
     const res = await axios.delete(
       `http://localhost:8080/api/post/unlike/${postId}`
@@ -81,3 +74,78 @@ export const removeLike = postId => async dispatch => {
     });
   }
 };
+
+export const deletePost = postId => async dispatch => {
+  try {
+    const res = await axios.delete(`http://localhost:8080/api/post/${postId}`);
+
+    dispatch({
+      type: postActionTypes.DELETE_POST,
+      payload: postId
+    });
+
+    dispatch(setAlert("Post Removed", "success"));
+  } catch (err) {
+    dispatch({
+      type: postActionTypes.POST_ERROR,
+      payload: { message: err.response.statusText, status: err.response.status }
+    });
+  }
+};
+
+export const addComment = (postId, commentData) => async dispatch => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json"
+    }
+  };
+
+  try {
+    const res = await axios.post(
+      `http://localhost:8080/api/post/comment/${postId}`,
+      commentData,
+      config
+    );
+
+    dispatch({
+      type: postActionTypes.ADD_COMMENT,
+      payload: { comments: res.data, postId }
+    });
+
+    dispatch(setAlert("Comment Added", "success"));
+  } catch (err) {
+    dispatch({
+      type: postActionTypes.POST_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status }
+    });
+  }
+};
+
+export const deleteComment = (postId, commentId) => async dispatch => {
+  try {
+    await axios.delete(
+      `http://localhost:8080/api/post/comment/${postId}/${commentId}`
+    );
+
+    dispatch({
+      type: postActionTypes.REMOVE_COMMENT,
+      payload: { postId, commentId }
+    });
+
+    dispatch(setAlert("Comment Removed", "success"));
+  } catch (err) {
+    console.log(err);
+    dispatch({
+      type: postActionTypes.POST_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status }
+    });
+  }
+};
+
+async function getImage(imageId) {
+  return await axios
+    .get(`http://localhost:8080/api/post/${imageId}/image`, {
+      responseType: "arraybuffer"
+    })
+    .then(response => Buffer.from(response.data, "binary").toString("base64"));
+}

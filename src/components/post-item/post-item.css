@@ -1,14 +1,10 @@
 .card {
   width: 500px;
-  height: 640px;
-  margin-bottom: 20px;
+  height: 100%;
+  margin-bottom: 10px;
 }
 
 .card-header {
-  background: transparent;
-}
-
-.card-footer {
   background: transparent;
 }
 

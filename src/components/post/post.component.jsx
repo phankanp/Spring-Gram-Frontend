@@ -8,8 +8,6 @@ import PostItem from "../post-item/post-item.component";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
-import yosemite from "../../images/yosemite.jpg";
-
 const Post = ({ getPosts, post: { posts, loading }, state }) => {
   useEffect(() => {
     getPosts();

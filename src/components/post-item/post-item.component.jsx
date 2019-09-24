@@ -4,13 +4,17 @@ import { Link } from "react-router-dom";
 import Moment from "react-moment";
 import { connect } from "react-redux";
 
-import { addLike, removeLike } from "../../redux/post/post.actions";
+import CommentForm from "../comment-form/comment-form.component";
+import CommentItem from "../comment-item/comment-item.component";
+
+import { addLike, removeLike, deletePost } from "../../redux/post/post.actions";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faUser,
   faHeart as farHeartFilled,
-  faTrashAlt
+  faTrashAlt,
+  faCommentDots
 } from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 
@@ -30,9 +34,9 @@ const PostItem = ({
     likeCount
   },
   addLike,
-  removeLike
+  removeLike,
+  deletePost
 }) => {
-  console.log(likes);
   return (
     <div className="container ">
       <div className="row justify-content-center align-self-center">
@@ -43,16 +47,17 @@ const PostItem = ({
               Gallery
             </Link>
             {!auth.loading &&
-              auth.user !== null &&
-              userAlias === auth.user.alias && (
-                <button
-                  type="button"
-                  className="btn btn-danger btn-sm float-sm-right"
-                >
-                  <FontAwesomeIcon icon={faTrashAlt} className="fontAwesome" />
-                  Delete Post
-                </button>
-              )}
+            auth.user !== null &&
+            userAlias === auth.user.alias ? (
+              <button
+                type="button"
+                className="btn btn-danger btn-sm float-sm-right"
+                onClick={e => deletePost(id)}
+              >
+                <FontAwesomeIcon icon={faTrashAlt} className="fontAwesome" />
+                Delete Post
+              </button>
+            ) : null}
           </div>
           <img
             src={`data:image/jpeg;base64,${image}`}
@@ -60,7 +65,7 @@ const PostItem = ({
             alt="..."
           />
           <div className="card-body d-flex flex-column">
-            <h5 className="card-title">
+            <h6 className="card-title">
               {!auth.loading && auth.user === null ? (
                 <FontAwesomeIcon
                   icon={faHeart}
@@ -84,24 +89,25 @@ const PostItem = ({
                   onClick={e => addLike(id)}
                 />
               )}
-              {likes.length}
+              {likes.length} likes
+              <small className="creation-date float-right">
+                <i>
+                  Created on{" "}
+                  <Moment format="MM/DD/YYYY">{createDateTime}</Moment>
+                </i>
+              </small>
+            </h6>
+
+            <h5 className="card-text">
+              <FontAwesomeIcon icon={faUser} className="fontAwesome" />"
+              {caption}"
             </h5>
-            <small className="creation-date">
-              <i>
-                Created on <Moment format="MM/DD/YYYY">{createDateTime}</Moment>
-              </i>
-            </small>
-            <p className="card-text">{caption}</p>
             <ul className="list-group rounded-0">
-              <li className="list-group-item rounded-0">
-                <b>{comments[0].userAlias}</b> {comments[0].comment}
-              </li>
+              {comments.map(comment => (
+                <CommentItem key={comment.id} comment={comment} postId={id} />
+              ))}
             </ul>
-            <input
-              className="mt-auto form-control rounded-0 border border-primary"
-              type="text"
-              placeholder="Add Comment"
-            />
+            <CommentForm postId={id} auth={auth} />
           </div>
         </div>
       </div>
@@ -110,7 +116,10 @@ const PostItem = ({
 };
 PostItem.propTypes = {
   post: PropTypes.object.isRequired,
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
+  addLike: PropTypes.func.isRequired,
+  removeLike: PropTypes.func.isRequired,
+  deletePost: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -119,5 +128,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { addLike, removeLike }
+  { addLike, removeLike, deletePost }
 )(PostItem);
