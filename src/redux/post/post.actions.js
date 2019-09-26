@@ -1,17 +1,49 @@
 import axios from "axios";
-import { GET_ERRORS } from "./../error/error.types";
 import { postActionTypes } from "./post.types";
 import { setAlert } from "../alert/alert.actions";
 
-export const createPost = (post, history) => async dispatch => {
+export const createPost = (postData, history) => async dispatch => {
+  console.log(history);
+  const config = {
+    headers: {
+      "Content-Type": "application/json"
+    }
+  };
+
   try {
-    const res = await axios.post("http://localhost:8080/api/post/", post);
+    const res = await axios.post(
+      "http://localhost:8080/api/post/",
+      postData,
+      config
+    );
+
+    const postImage = await getImage(res.data.id);
+
+    res.data.image = postImage;
+
+    dispatch({
+      type: postActionTypes.CREATE_POST,
+      payload: res.data
+    });
+
+    // const res1 = await axios.get("http://localhost:8080/api/post/");
+
+    // for (const arr of res1.data) {
+    //   const postImage = await getImage(arr.id);
+
+    //   arr.image = postImage;
+    // }
+
+    // dispatch({
+    //   type: postActionTypes.GET_POSTS,
+    //   payload: res1.data
+    // });
 
     history.push("/homepage");
   } catch (err) {
     dispatch({
-      type: GET_ERRORS,
-      payload: err.response.data
+      type: postActionTypes.POST_ERROR,
+      payload: { message: err.response.statusText, status: err.response.status }
     });
   }
 };
@@ -57,7 +89,6 @@ export const addLike = postId => async dispatch => {
 };
 
 export const removeLike = postId => async dispatch => {
-  alert("test");
   try {
     const res = await axios.delete(
       `http://localhost:8080/api/post/unlike/${postId}`
@@ -134,7 +165,6 @@ export const deleteComment = (postId, commentId) => async dispatch => {
 
     dispatch(setAlert("Comment Removed", "success"));
   } catch (err) {
-    console.log(err);
     dispatch({
       type: postActionTypes.POST_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status }

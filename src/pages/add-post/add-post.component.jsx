@@ -1,6 +1,6 @@
 import React from "react";
 
-import AddPostForm from "../../components/add-post-form/add-post-form.component";
+import AddPostForm from "../../components/create-post-form/create-post-form.component";
 
 const AddPost = ({ history }) => (
   <div className="container">

@@ -13,8 +13,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faUser,
   faHeart as farHeartFilled,
-  faTrashAlt,
-  faCommentDots
+  faTrashAlt
 } from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 
@@ -44,7 +43,7 @@ const PostItem = ({
           <div className="card-header">
             <Link className="" to="/gallery">
               <FontAwesomeIcon icon={faUser} className="fontAwesome" />
-              Gallery
+              {userAlias}
             </Link>
             {!auth.loading &&
             auth.user !== null &&
@@ -103,9 +102,15 @@ const PostItem = ({
               {caption}"
             </h5>
             <ul className="list-group rounded-0">
-              {comments.map(comment => (
-                <CommentItem key={comment.id} comment={comment} postId={id} />
-              ))}
+              {comments === null ? (
+                <li className="list-group-item rounded-0">
+                  <b>No Comments</b>
+                </li>
+              ) : (
+                comments.map(comment => (
+                  <CommentItem key={comment.id} comment={comment} postId={id} />
+                ))
+              )}
             </ul>
             <CommentForm postId={id} auth={auth} />
           </div>

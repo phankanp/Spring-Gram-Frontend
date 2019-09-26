@@ -7,7 +7,7 @@ import { login } from "../../redux/auth/auth.actions";
 import "./login.css";
 import formLogo from "../../images/instagram.png";
 
-const Login = ({ login, isAuthenticated }) => {
+const Login = ({ login, isAuthenticated }, props) => {
   const [formData, setFormData] = useState({
     username: "",
     password: ""

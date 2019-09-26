@@ -27,6 +27,9 @@ const CommentForm = ({ auth, postId, addComment }) => {
             onChange={e => setComment(e.target.value)}
             required
             disabled
+            data-toggle="tooltip"
+            data-placement="bottom"
+            title="Login or Register to comment"
           />
         ) : (
           <input

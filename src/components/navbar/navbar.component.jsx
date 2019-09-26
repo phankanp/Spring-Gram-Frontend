@@ -11,17 +11,22 @@ import { faImages, faUser } from "@fortawesome/free-regular-svg-icons";
 import {
   faSignOutAlt,
   faSignInAlt,
-  faUserPlus
+  faUserPlus,
+  faPlus
 } from "@fortawesome/free-solid-svg-icons";
 
 import "./navbar.css";
 
-const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
+const Navbar = ({ auth: { isAuthenticated, loading }, logout }, props) => {
   const authenticatedUserLinks = (
     <div className="navbar-nav">
       <Link className="nav-item nav-link" to="/gallery">
         <FontAwesomeIcon icon={faImages} className="fontAwesome" />
         Gallery
+      </Link>
+      <Link className="nav-item nav-link" to="/addPost">
+        <FontAwesomeIcon icon={faPlus} className="fontAwesome" />
+        Create Post
       </Link>
       <Link className="nav-item nav-link" to="/profile">
         <FontAwesomeIcon icon={faUser} className="fontAwesome" />
@@ -63,7 +68,6 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
         />
         Spring-Gram
       </Link>
-
       <button
         className="navbar-toggler"
         type="button"
