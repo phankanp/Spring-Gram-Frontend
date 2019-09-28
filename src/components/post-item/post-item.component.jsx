@@ -41,7 +41,7 @@ const PostItem = ({
       <div className="row justify-content-center align-self-center">
         <div className="card rounded-0 d-flex flex-column">
           <div className="card-header">
-            <Link className="" to="/gallery">
+            <Link className="" to={`/profile/${userAlias}`}>
               <FontAwesomeIcon icon={faUser} className="fontAwesome" />
               {userAlias}
             </Link>

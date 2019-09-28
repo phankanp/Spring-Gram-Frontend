@@ -18,7 +18,7 @@ const Modal = ({ isShowing, hide, post: { image, caption, userAlias } }) =>
           <div
             className="modal"
             id="exampleModalCenter"
-            tabindex="-1"
+            tabIndex="-1"
             role="dialog"
             aria-labelledby="exampleModalCenterTitle"
             aria-hidden="true"
@@ -29,7 +29,7 @@ const Modal = ({ isShowing, hide, post: { image, caption, userAlias } }) =>
               <div className="modal-content">
                 <div className="modal-header rounded-0 border-bottom-0">
                   <h5 className="modal-title" id="exampleModalCenterTitle">
-                    <Link className="" to="/gallery">
+                    <Link className="" to={`/profile/${userAlias}`}>
                       <FontAwesomeIcon icon={faUser} className="fontAwesome" />
                       {userAlias}
                     </Link>

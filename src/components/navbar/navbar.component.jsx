@@ -17,7 +17,7 @@ import {
 
 import "./navbar.css";
 
-const Navbar = ({ auth: { isAuthenticated, loading }, logout }, props) => {
+const Navbar = ({ auth: { isAuthenticated, loading, user }, logout }) => {
   const authenticatedUserLinks = (
     <div className="navbar-nav">
       <Link className="nav-item nav-link" to="/gallery">
@@ -28,10 +28,17 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }, props) => {
         <FontAwesomeIcon icon={faPlus} className="fontAwesome" />
         Create Post
       </Link>
-      <Link className="nav-item nav-link" to="/profile">
-        <FontAwesomeIcon icon={faUser} className="fontAwesome" />
-        Profile
-      </Link>
+      {user === null ? (
+        <Link className="nav-item nav-link" to="/profile">
+          <FontAwesomeIcon icon={faUser} className="fontAwesome" />
+          Profile
+        </Link>
+      ) : (
+        <Link className="nav-item nav-link" to={`/profile/${user.alias}`}>
+          <FontAwesomeIcon icon={faUser} className="fontAwesome" />
+          Profile
+        </Link>
+      )}
       <Link className="nav-item nav-link" onClick={logout} to="">
         <FontAwesomeIcon icon={faSignOutAlt} className="fontAwesome" />
         Logout
@@ -58,7 +65,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }, props) => {
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-      <Link className="navbar-brand" to="/homepage">
+      <Link className="navbar-brand" to="/">
         <img
           src={homeLogo}
           className="d-inline-block align-top"

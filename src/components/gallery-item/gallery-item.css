@@ -1,4 +1,4 @@
-.img-fluid {
+.galleryItemImgFluid {
   height: 200;
   width: 400;
   margin: 15px;
@@ -23,25 +23,25 @@
   transform: scale(1.1);
 }
 
-.btn {
+.imageButton {
   background: transparent;
   border: none;
   outline: none;
 }
 
-.btn-primary:hover {
+.imageButton:hover {
   color: transparent;
   background-color: transparent;
   border-color: transparent;
 }
 
-.btn-primary:hover,
-.btn-primary:focus,
-.btn-primary:active,
-.btn-primary:active:focus:not(:disabled):not(.disabled),
-.btn:focus,
-.btn:active,
-.btn:hover {
+.imageButton:hover,
+.imageButton:focus,
+.imageButton:active,
+.imageButton:active:focus:not(:disabled):not(.disabled),
+.imageButton:focus,
+.imageButton:active,
+.imageButton:hover {
   box-shadow: none !important;
   outline: 0;
   background: transparent;

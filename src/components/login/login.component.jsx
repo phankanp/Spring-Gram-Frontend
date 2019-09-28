@@ -1,11 +1,13 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
+
 import { login } from "../../redux/auth/auth.actions";
 
-import "./login.css";
 import formLogo from "../../images/instagram.png";
+
+import "./login.css";
 
 const Login = ({ login, isAuthenticated }, props) => {
   const [formData, setFormData] = useState({

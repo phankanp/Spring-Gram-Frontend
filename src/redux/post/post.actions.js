@@ -3,7 +3,7 @@ import { postActionTypes } from "./post.types";
 import { setAlert } from "../alert/alert.actions";
 
 export const createPost = (postData, history) => async dispatch => {
-  console.log(history);
+  console.log(postData);
   const config = {
     headers: {
       "Content-Type": "application/json"
@@ -26,21 +26,17 @@ export const createPost = (postData, history) => async dispatch => {
       payload: res.data
     });
 
-    // const res1 = await axios.get("http://localhost:8080/api/post/");
-
-    // for (const arr of res1.data) {
-    //   const postImage = await getImage(arr.id);
-
-    //   arr.image = postImage;
-    // }
-
-    // dispatch({
-    //   type: postActionTypes.GET_POSTS,
-    //   payload: res1.data
-    // });
-
     history.push("/homepage");
   } catch (err) {
+    const errors = [];
+
+    for (var key in err.response.data) {
+      errors.push(err.response.data[key]);
+    }
+
+    if (errors) {
+      errors.forEach(error => dispatch(setAlert(error, "danger")));
+    }
     dispatch({
       type: postActionTypes.POST_ERROR,
       payload: { message: err.response.statusText, status: err.response.status }

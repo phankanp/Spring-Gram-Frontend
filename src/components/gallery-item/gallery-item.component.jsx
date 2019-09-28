@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
+import React from "react";
 
 import Modal from "../Modal/modal.component";
 import useModal from "../../utils/modal/useModal";
@@ -27,13 +25,13 @@ const GalleryItem = ({
       <div className="hvr-grow">
         <button
           type="button"
-          className="btn toggle-button"
+          className="btn toggle-button imageButton"
           id="centered-toggle-button"
           onClick={toggle}
         >
           <img
             src={`data:image/jpeg;base64,${image}`}
-            className="img-fluid"
+            className="img-fluid galleryItemImgFluid"
             alt=""
           ></img>
         </button>

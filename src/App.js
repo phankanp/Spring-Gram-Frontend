@@ -13,13 +13,11 @@ import HomePage from "./pages/homepage/homepage.component";
 import Register from "./components/register/register.component";
 import Login from "./components/login/login.component";
 import Gallery from "./components/gallery/gallery.component";
+import Profile from "./components/profile/profile.component";
 import Alert from "./components/alert/alert.component";
 
 import { loadUser } from "./redux/auth/auth.actions";
 import setAuthToken from "../src/utils/setAuthToken";
-
-import Modal from "./components/Modal/modal.component";
-import useModal from "./utils/modal/useModal";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -42,9 +40,10 @@ function App() {
         <Switch>
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
-          <Route exact path="/homepage" component={HomePage} />
+          <Route exact path="/" component={HomePage} />
           <Route exact path="/addPost" component={PostForm} />
           <Route exact path="/gallery" component={Gallery} />
+          <Route exact path="/profile/:alias" component={Profile} />
         </Switch>
       </BrowserRouter>
     </Provider>

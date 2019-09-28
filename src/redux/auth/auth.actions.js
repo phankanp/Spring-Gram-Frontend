@@ -60,7 +60,6 @@ export const register = ({
     const errors = [];
 
     for (var key in err.response.data) {
-      console.log(err.response.data[key]);
       errors.push(err.response.data[key]);
     }
 

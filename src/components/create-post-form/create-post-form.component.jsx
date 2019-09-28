@@ -8,7 +8,7 @@ import { createPost } from "../../redux/post/post.actions";
 const PostForm = ({ props, createPost, history }) => {
   const [postData, setPostData] = useState({
     image: "",
-    caption: ""
+    caption: null
   });
 
   const { image, caption } = postData;
