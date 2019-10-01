@@ -1,0 +1,15 @@
+.following-card {
+  height: 400px;
+  width: 300px;
+  color: black;
+  background: whitesmoke; /* fallback for old browsers */
+}
+
+.following-card-body {
+  color: purple;
+}
+/* 
+.fa-spin {
+  text-align: center;
+  justify-content: center;
+} */

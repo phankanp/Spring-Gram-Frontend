@@ -26,14 +26,17 @@ const Login = ({ login, isAuthenticated }, props) => {
   };
 
   if (isAuthenticated) {
-    return <Redirect to="/homepage" />;
+    return <Redirect to="/" />;
   }
 
   return (
     <div className="login-form d-flex align-items-center">
       <div className="container">
         <div className="row justify-content-md-center">
-          <div className="col-sm-4 border border-primary shadow rounded pt-2">
+          <div
+            className="col-sm-4 border border-primary shadow rounded pt-2"
+            style={{ backgroundColor: "white" }}
+          >
             <div className="text-center">
               <h1>Sign In!</h1>
               <img src={formLogo} alt="registration from logo" />

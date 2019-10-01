@@ -39,7 +39,7 @@ const Navbar = ({ auth: { isAuthenticated, loading, user }, logout }) => {
           Profile
         </Link>
       )}
-      <Link className="nav-item nav-link" onClick={logout} to="">
+      <Link className="nav-item nav-link" onClick={logout} to="/">
         <FontAwesomeIcon icon={faSignOutAlt} className="fontAwesome" />
         Logout
       </Link>
@@ -64,7 +64,7 @@ const Navbar = ({ auth: { isAuthenticated, loading, user }, logout }) => {
   );
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark ">
       <Link className="navbar-brand" to="/">
         <img
           src={homeLogo}

@@ -18,11 +18,11 @@ const CommentForm = ({ auth, postId, addComment }) => {
       }}
     >
       <div className="input-group mb-3" type="submit" value="Submit">
-        {!auth.loading && auth.user === null ? (
+        {!auth.isAuthenticated ? (
           <input
             className="mt-auto form-control rounded-0 border border-primary"
             type="text"
-            placeholder="Add Comment"
+            placeholder="Login or Register to comment"
             value={comment}
             onChange={e => setComment(e.target.value)}
             required
@@ -35,7 +35,7 @@ const CommentForm = ({ auth, postId, addComment }) => {
           <input
             className="mt-auto form-control rounded-0 border border-primary"
             type="text"
-            placeholder="Add Comment"
+            placeholder="Add Comment and Hit Enter"
             value={comment}
             onChange={e => setComment(e.target.value)}
             required
@@ -47,10 +47,15 @@ const CommentForm = ({ auth, postId, addComment }) => {
 };
 
 CommentForm.propTypes = {
-  addComment: PropTypes.func.isRequired
+  addComment: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired
 };
 
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
 export default connect(
-  null,
+  mapStateToProps,
   { addComment }
 )(CommentForm);

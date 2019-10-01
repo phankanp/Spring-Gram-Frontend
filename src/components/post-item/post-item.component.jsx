@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import Moment from "react-moment";
 import { connect } from "react-redux";
+import Moment from "react-moment";
 
 import CommentForm from "../comment-form/comment-form.component";
 import CommentItem from "../comment-item/comment-item.component";
@@ -13,7 +13,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faUser,
   faHeart as farHeartFilled,
-  faTrashAlt
+  faTrashAlt,
+  faEllipsisH
 } from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 
@@ -30,7 +31,8 @@ const PostItem = ({
     likes,
     comments,
     userAlias,
-    likeCount
+    likeCount,
+    userProfileImage
   },
   addLike,
   removeLike,
@@ -39,23 +41,57 @@ const PostItem = ({
   return (
     <div className="container ">
       <div className="row justify-content-center align-self-center">
-        <div className="card rounded-0 d-flex flex-column">
+        <div
+          className="card rounded-0 d-flex flex-column shadow-lg"
+          style={{ marginBottom: "40px" }}
+        >
           <div className="card-header">
-            <Link className="" to={`/profile/${userAlias}`}>
-              <FontAwesomeIcon icon={faUser} className="fontAwesome" />
-              {userAlias}
+            <Link className="header-alias" to={`/profile/${userAlias}`}>
+              <img
+                className="rounded-circle float-left fontAwesome border border-info"
+                alt="100x100"
+                src={`data:image/jpeg;base64,${userProfileImage}`}
+                data-holder-rendered="true"
+                style={{ height: "33px", width: "33px" }}
+              />
+              <text
+                className=" align-self-center"
+                style={{ verticalAlign: "middle" }}
+              >
+                {userAlias}
+              </text>
             </Link>
+
             {!auth.loading &&
             auth.user !== null &&
             userAlias === auth.user.alias ? (
-              <button
-                type="button"
-                className="btn btn-danger btn-sm float-sm-right"
-                onClick={e => deletePost(id)}
-              >
-                <FontAwesomeIcon icon={faTrashAlt} className="fontAwesome" />
-                Delete Post
-              </button>
+              <div class="btn-group float-right ">
+                <button
+                  class="btn btnCustom btn-sm dropdown-toggle"
+                  type="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <FontAwesomeIcon icon={faEllipsisH} className="fontAwesome" />
+                </button>
+                <div
+                  class="dropdown-menu dropdown-menu-right"
+                  style={{ textAlign: "center" }}
+                >
+                  <button
+                    type="button"
+                    className="btn btn-danger btn-sm float-sm-middle "
+                    onClick={e => deletePost(id)}
+                  >
+                    <FontAwesomeIcon
+                      icon={faTrashAlt}
+                      className="fontAwesome"
+                    />
+                    Delete Post
+                  </button>
+                </div>
+              </div>
             ) : null}
           </div>
           <img
@@ -112,7 +148,7 @@ const PostItem = ({
                 ))
               )}
             </ul>
-            <CommentForm postId={id} auth={auth} />
+            <CommentForm postId={id} />
           </div>
         </div>
       </div>

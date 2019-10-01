@@ -40,7 +40,10 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
     <div className="register-form d-flex align-items-center">
       <div className="container">
         <div className="row justify-content-md-center">
-          <div className="col-sm-4 border border-primary shadow rounded pt-2">
+          <div
+            className="col-sm-4 border border-primary shadow rounded pt-2"
+            style={{ backgroundColor: "white" }}
+          >
             <div className="text-center">
               <h1>Register!</h1>
               <img src={formLogo} alt="registration from logo" />

@@ -14,7 +14,13 @@ const Post = ({ getPosts, post: { posts, loading }, state }) => {
   }, [getPosts]);
 
   return loading ? (
-    <FontAwesomeIcon icon={faSpinner} className="fa-spin" />
+    <div class="d-flex justify-content-center">
+      <FontAwesomeIcon
+        icon={faSpinner}
+        className="fa-spin"
+        style={{ height: "50px", width: "50px", color: "white" }}
+      />
+    </div>
   ) : (
     <div className="posts">
       {posts.map((post, i) => (

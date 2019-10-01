@@ -2,8 +2,9 @@ import axios from "axios";
 import { postActionTypes } from "./post.types";
 import { setAlert } from "../alert/alert.actions";
 
+import { loadUser } from "../auth/auth.actions";
+
 export const createPost = (postData, history) => async dispatch => {
-  console.log(postData);
   const config = {
     headers: {
       "Content-Type": "application/json"
@@ -26,7 +27,7 @@ export const createPost = (postData, history) => async dispatch => {
       payload: res.data
     });
 
-    history.push("/homepage");
+    history.push("/");
   } catch (err) {
     const errors = [];
 
@@ -50,8 +51,10 @@ export const getPosts = () => async dispatch => {
 
     for (const arr of res.data) {
       const postImage = await getImage(arr.id);
+      const userProfileImage = await getUserProfileImage(arr.userAlias);
 
       arr.image = postImage;
+      arr.userProfileImage = userProfileImage;
     }
 
     dispatch({
@@ -171,6 +174,14 @@ export const deleteComment = (postId, commentId) => async dispatch => {
 async function getImage(imageId) {
   return await axios
     .get(`http://localhost:8080/api/post/${imageId}/image`, {
+      responseType: "arraybuffer"
+    })
+    .then(response => Buffer.from(response.data, "binary").toString("base64"));
+}
+
+async function getUserProfileImage(userAlias) {
+  return await axios
+    .get(`http://localhost:8080/api/profile/${userAlias}/image`, {
       responseType: "arraybuffer"
     })
     .then(response => Buffer.from(response.data, "binary").toString("base64"));

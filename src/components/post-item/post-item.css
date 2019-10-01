@@ -36,6 +36,18 @@
   border-color: transparent;
 }
 
+.btn-outline-primary {
+  outline: none;
+  border: none;
+  color: black;
+}
+
+.btn-outline-primary:focus {
+  outline: none;
+  border: none;
+  color: black;
+}
+
 .fontAwesomeTrashAlt {
   color: black;
 }
@@ -47,4 +59,79 @@
 
 .emptyHeart {
   cursor: pointer;
+}
+
+.header-alias {
+  color: black;
+}
+
+/* .btnCustom {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+} */
+.btnCustom:hover,
+.btnCustom:focus,
+.btnCustom.focus {
+  text-decoration: none;
+  outline: none;
+  box-shadow: none;
+}
+.btnCustom:active,
+.btnCustom.active {
+  background-image: none;
+  outline: none;
+}
+.btnCustom.disabled,
+.btnCustom[disabled],
+fieldset[disabled] .btnCustom {
+  cursor: not-allowed;
+  filter: alpha(opacity=65);
+  opacity: 0.65;
+}
+a.btnCustom.disabled,
+fieldset[disabled] a.btnCustom {
+  pointer-events: none;
+}
+.btnCustom-default {
+  color: #333;
+  background-color: #fff;
+  border-color: #ccc;
+}
+.btnCustom-default:focus,
+.btnCustom-default.focus {
+  color: #333;
+}
+.btnCustom-default:hover {
+  color: #333;
+}
+.btnCustom-default:active,
+.btnCustom-default.active,
+.open > .dropdown-toggle.btnCustom-default {
+  color: #333;
+}
+.btnCustom-default:active:hover,
+.btnCustom-default.active:hover,
+.open > .dropdown-toggle.btnCustom-default:hover,
+.btnCustom-default:active:focus,
+.btnCustom-default.active:focus,
+.open > .dropdown-toggle.btnCustom-default:focus,
+.btnCustom-default:active.focus,
+.btnCustom-default.active.focus,
+.open > .dropdown-toggle.btnCustom-default.focus {
+  color: #333;
 }

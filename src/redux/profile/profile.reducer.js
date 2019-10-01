@@ -13,6 +13,7 @@ const profileReducer = (state = initialState, action) => {
     case profileActionTypes.GET_PROFILE:
     case profileActionTypes.ADD_FOLLOW:
     case profileActionTypes.REMOVE_FOLLOW:
+    case profileActionTypes.EDIT_PROFILE:
       return {
         ...state,
         userProfile: payload,

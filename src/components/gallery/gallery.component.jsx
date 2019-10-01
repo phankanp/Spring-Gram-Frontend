@@ -10,9 +10,13 @@ const Gallery = ({ getPosts, post: { posts } }) => {
   useEffect(() => {
     getPosts();
   }, [getPosts]);
-
+  console.log(posts[0]);
   return (
     <div className="container">
+      <h5 className="display-4 text-center" style={{ color: "white" }}>
+        Gallery
+      </h5>
+      <hr style={{ border: ".5px solid black" }} />
       <div className="row d-flex justify-content-center">
         {posts.map((post, i) => (
           <GalleryItem key={i} post={post} />

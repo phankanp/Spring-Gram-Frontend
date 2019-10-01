@@ -11,7 +11,11 @@ const divStyle = {
   display: "block"
 };
 
-const Modal = ({ isShowing, hide, post: { image, caption, userAlias } }) =>
+const Modal = ({
+  isShowing,
+  hide,
+  post: { image, caption, userAlias, userProfileImage }
+}) =>
   isShowing
     ? ReactDOM.createPortal(
         <React.Fragment>
@@ -29,9 +33,20 @@ const Modal = ({ isShowing, hide, post: { image, caption, userAlias } }) =>
               <div className="modal-content">
                 <div className="modal-header rounded-0 border-bottom-0">
                   <h5 className="modal-title" id="exampleModalCenterTitle">
-                    <Link className="" to={`/profile/${userAlias}`}>
-                      <FontAwesomeIcon icon={faUser} className="fontAwesome" />
-                      {userAlias}
+                    <Link className="header-alias" to={`/profile/${userAlias}`}>
+                      <img
+                        className="rounded-circle float-left fontAwesome border border-info"
+                        alt="100x100"
+                        src={`data:image/jpeg;base64,${userProfileImage}`}
+                        data-holder-rendered="true"
+                        style={{ height: "33px", width: "33px" }}
+                      />
+                      <text
+                        className=" align-self-center"
+                        style={{ verticalAlign: "middle" }}
+                      >
+                        {userAlias}
+                      </text>
                     </Link>
                   </h5>
                   <button

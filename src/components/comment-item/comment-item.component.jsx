@@ -14,16 +14,18 @@ const CommentItem = ({
   auth,
   deleteComment
 }) => {
-  return (
+  return auth.loading || auth.user === null ? null : (
     <li className="list-group-item rounded-0">
       <b>{userAlias}</b> {comment}
-      {!auth.loading && auth.user !== null && userAlias === auth.user.alias && (
-        <FontAwesomeIcon
-          icon={faTimes}
-          className="fontAwesome float-right"
-          onClick={e => deleteComment(postId, id)}
-        />
-      )}
+      {!auth.loading &&
+        auth.isAuthenticated &&
+        userAlias === auth.user.alias && (
+          <FontAwesomeIcon
+            icon={faTimes}
+            className="fontAwesome float-right"
+            onClick={e => deleteComment(postId, id)}
+          />
+        )}
     </li>
   );
 };

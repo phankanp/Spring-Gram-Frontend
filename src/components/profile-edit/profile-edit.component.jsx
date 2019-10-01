@@ -1,32 +1,33 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { withRouter } from "react-router";
+import { withRouter } from "react-router-dom";
 
-import { createPost } from "../../redux/post/post.actions";
+import { editProfile } from "../../redux/profile/profile.actions";
 
-const PostForm = ({ props, createPost, history }) => {
-  const [postData, setPostData] = useState({
-    image: "",
-    caption: null
+const ProfileEdit = ({ editProfile, user, props, history }) => {
+  const [profileData, setProfileData] = useState({
+    profileImage: "",
+    fullName: user.fullName
   });
 
-  const { image, caption } = postData;
+  const { profileImage, fullName } = profileData;
 
   const onFileChange = e =>
-    setPostData({ ...postData, [e.target.name]: e.target.files[0] });
+    setProfileData({ ...profileData, [e.target.name]: e.target.files[0] });
 
   const onChange = e =>
-    setPostData({ ...postData, [e.target.name]: e.target.value });
+    setProfileData({ ...profileData, [e.target.name]: e.target.value });
 
   const onSubmit = async e => {
     e.preventDefault();
-    let newPost = new FormData();
+    let profile = new FormData();
 
-    newPost.append("image", image);
-    newPost.append("caption", caption);
+    profile.append("profileImage", profileImage);
+    profile.append("fullName", fullName);
 
-    createPost(newPost, history);
+    editProfile(profile, history);
   };
 
   return (
@@ -35,15 +36,11 @@ const PostForm = ({ props, createPost, history }) => {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <h5 className="display-4 text-center" style={{ color: "white" }}>
-                Create Post
-              </h5>
-              <hr style={{ border: ".5px solid black" }} />
+              <h5 className="display-4 text-center">Edit Profile</h5>
+              <hr />
               <form onSubmit={e => onSubmit(e)}>
                 <div className="form-group">
-                  <label htmlFor="inputGroupFile01" style={{ color: "white" }}>
-                    Choose Image
-                  </label>
+                  <label htmlFor="inputGroupFile01">Choose Image</label>
                   <div className="input-group mb-3">
                     <div className="custom-file">
                       <input
@@ -51,7 +48,7 @@ const PostForm = ({ props, createPost, history }) => {
                         className="custom-file-input"
                         id="inputGroupFile01"
                         aria-describedby="inputGroupFileAddon01"
-                        name="image"
+                        name="profileImage"
                         // value={image}
                         onChange={e => onFileChange(e)}
                       />
@@ -59,33 +56,31 @@ const PostForm = ({ props, createPost, history }) => {
                         className="custom-file-label"
                         htmlFor="inputGroupFile01"
                       >
-                        {image === "" ? (
+                        {profileImage === "" ? (
                           <span>Choose a file...</span>
                         ) : (
-                          <span>File Selected - {image.name}</span>
+                          <span>File Selected - {profileImage.name}</span>
                         )}
                       </label>
                     </div>
                   </div>
                 </div>
                 <div className="form-group">
-                  <label
-                    htmlFor="formGroupExampleInput"
-                    style={{ color: "white" }}
-                  >
-                    Caption
-                  </label>
+                  <label htmlFor="formGroupExampleInput">Fill Name</label>
                   <input
                     type="text"
                     className="form-control"
                     id="formGroupExampleInput"
                     placeholder="Enter a image caption"
-                    name="caption"
-                    value={caption}
+                    name="fullName"
+                    value={fullName}
                     onChange={e => onChange(e)}
                   />
                 </div>
-                <button type="submit" className="btn btn-dark btn-block mt-4">
+                <button
+                  type="submit"
+                  className="btn btn-primary btn-block mt-4"
+                >
                   Submit
                 </button>
               </form>
@@ -97,15 +92,17 @@ const PostForm = ({ props, createPost, history }) => {
   );
 };
 
-PostForm.propTypes = {
-  createPost: PropTypes.func.isRequired
+ProfileEdit.propTypes = {
+  editProfile: PropTypes.func.isRequired,
+  user: PropTypes.object.isRequired
 };
 
 const mapStateToProps = (state, ownProps) => ({
+  user: state.auth.user,
   props: ownProps
 });
 
 export default connect(
   mapStateToProps,
-  { createPost }
-)(withRouter(PostForm));
+  { editProfile }
+)(ProfileEdit);
