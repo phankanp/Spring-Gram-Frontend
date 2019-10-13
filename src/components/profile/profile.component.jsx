@@ -14,8 +14,6 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner, faUserEdit } from "@fortawesome/free-solid-svg-icons";
 
-import yosemite from "../../images/yosemite.jpg";
-
 const Profile = ({
   getProfile,
   addFollow,

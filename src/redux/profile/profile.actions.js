@@ -8,12 +8,6 @@ export const getProfile = userAlias => async dispatch => {
       `http://localhost:8080/api/profile/user/${userAlias}`
     );
 
-    for (const arr of res.data.posts) {
-      const postImage = await getImage(arr.id);
-
-      arr.image = postImage;
-    }
-
     for (const arr of res.data.following) {
       const userProfileImage = await getUserProfileImage(arr.userAlias);
 
@@ -23,6 +17,14 @@ export const getProfile = userAlias => async dispatch => {
     const userProfileImage = await getUserProfileImage(userAlias);
 
     res.data.userProfileImage = userProfileImage;
+
+    for (const arr of res.data.posts) {
+      const postImage = await getImage(arr.id);
+      const userProfileImage = await getUserProfileImage(userAlias);
+
+      arr.image = postImage;
+      arr.userProfileImage = userProfileImage
+    }
 
     dispatch({
       type: profileActionTypes.GET_PROFILE,
@@ -42,6 +44,10 @@ export const addFollow = userId => async dispatch => {
       `http://localhost:8080/api/profile/follow/${userId}`
     );
 
+    const userProfileImage = await getUserProfileImage(res.data.userAlias);
+
+    res.data.userProfileImage = userProfileImage;
+
     dispatch({
       type: profileActionTypes.ADD_FOLLOW,
       payload: res.data
@@ -55,13 +61,14 @@ export const addFollow = userId => async dispatch => {
 };
 
 export const removeFollow = userId => async dispatch => {
-  console.log("test");
   try {
     const res = await axios.delete(
       `http://localhost:8080/api/profile/unfollow/${userId}`
     );
 
-    console.log(res);
+    const userProfileImage = await getUserProfileImage(res.data.userAlias);
+
+    res.data.userProfileImage = userProfileImage;
 
     dispatch({
       type: profileActionTypes.REMOVE_FOLLOW,

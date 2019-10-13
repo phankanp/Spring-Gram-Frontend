@@ -5,9 +5,6 @@ import { connect } from "react-redux";
 import Post from "../../components/post/post.component";
 import Following from "../../components/following/following.component";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSpinner } from "@fortawesome/free-solid-svg-icons";
-
 const HomePage = ({ auth }) => {
   return (
     <div className="container">
@@ -18,11 +15,11 @@ const HomePage = ({ auth }) => {
           <Post />
         </div>
       ) : (
-        <div class="row no-gutters">
-          <div class="col-sm-8">
+        <div className="row no-gutters">
+          <div className="col-sm-8">
             <Post />
           </div>
-          <div class="col-sm-4">
+          <div className="col-sm-4">
             <Following auth={auth} />
           </div>
         </div>

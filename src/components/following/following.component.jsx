@@ -16,7 +16,7 @@ const Following = ({ getProfile, auth, profile: { userProfile, loading } }) => {
   }, [getProfile]);
 
   return !auth.isAuthenticated ? null : loading ? (
-    <div class="d-flex justify-content-center">
+    <div className="d-flex justify-content-center">
       <FontAwesomeIcon
         icon={faSpinner}
         className="fa-spin"
@@ -25,10 +25,10 @@ const Following = ({ getProfile, auth, profile: { userProfile, loading } }) => {
     </div>
   ) : (
     <div class="card  d-flex justify-content-sm-middle justify-content-center text-center following-card mx-auto shadow-lg  rounded-0">
-      <div class="card-header">
+      <div className="card-header">
         <b>Following</b>
       </div>
-      <div class="card-body">
+      <div className="card-body">
         <div className="col-md-12 align-self-center">
           {userProfile.following.map((profile, i) => (
             <Link className="" to={`/profile/${profile.userAlias}`}>

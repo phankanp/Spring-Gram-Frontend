@@ -22,7 +22,7 @@ const CommentItem = ({
         userAlias === auth.user.alias && (
           <FontAwesomeIcon
             icon={faTimes}
-            className="fontAwesome float-right"
+            className="fontAwesome deleteComment float-right"
             onClick={e => deleteComment(postId, id)}
           />
         )}

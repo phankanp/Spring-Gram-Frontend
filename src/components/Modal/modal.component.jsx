@@ -2,9 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Link } from "react-router-dom";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
-
 import "./modal.css";
 
 const divStyle = {

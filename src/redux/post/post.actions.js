@@ -2,8 +2,6 @@ import axios from "axios";
 import { postActionTypes } from "./post.types";
 import { setAlert } from "../alert/alert.actions";
 
-import { loadUser } from "../auth/auth.actions";
-
 export const createPost = (postData, history) => async dispatch => {
   const config = {
     headers: {
@@ -50,6 +48,7 @@ export const getPosts = () => async dispatch => {
     const res = await axios.get("http://localhost:8080/api/post/");
 
     for (const arr of res.data) {
+      console.log(arr)
       const postImage = await getImage(arr.id);
       const userProfileImage = await getUserProfileImage(arr.userAlias);
 

@@ -1,3 +1,7 @@
 .list-group-item {
   padding: 4px;
 }
+
+.deleteComment{
+  cursor: pointer;
+}

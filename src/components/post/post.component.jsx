@@ -8,13 +8,13 @@ import PostItem from "../post-item/post-item.component";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
-const Post = ({ getPosts, post: { posts, loading }, state }) => {
+const Post = ({ getPosts, post: { posts, loading }, auth }) => {
   useEffect(() => {
     getPosts();
   }, [getPosts]);
 
   return loading ? (
-    <div class="d-flex justify-content-center">
+    <div className="d-flex justify-content-center">
       <FontAwesomeIcon
         icon={faSpinner}
         className="fa-spin"
@@ -32,11 +32,13 @@ const Post = ({ getPosts, post: { posts, loading }, state }) => {
 
 Post.propTypes = {
   getPosts: PropTypes.func.isRequired,
-  post: PropTypes.object.isRequired
+  post: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
-  post: state.post
+  post: state.post,
+  auth: state.auth
 });
 
 export default connect(
