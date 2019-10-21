@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
@@ -26,7 +26,7 @@ const Profile = ({
 
   useEffect(() => {
     getProfile(userAlias);
-  }, [getProfile]);
+  }, [getProfile, userAlias]);
 
   return loading ? (
     <div class="d-flex justify-content-center">

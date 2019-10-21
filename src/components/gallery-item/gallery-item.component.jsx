@@ -5,13 +5,9 @@ import useModal from "../../utils/modal/useModal";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faUser,
   faHeart as farHeartFilled,
-  faTrashAlt,
-  faEllipsisH,
   faComment
 } from "@fortawesome/free-solid-svg-icons";
-import { faHeart } from "@fortawesome/free-regular-svg-icons";
 
 import "./gallery-item.css";
 

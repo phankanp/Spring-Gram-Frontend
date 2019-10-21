@@ -16,10 +16,6 @@ export const createPost = (postData, history) => async dispatch => {
       config
     );
 
-    // const postImage = await getImage(res.data.id);
-
-    // res.data.image = postImage;
-
     dispatch({
       type: postActionTypes.CREATE_POST,
       payload: res.data
@@ -166,22 +162,6 @@ export const deleteComment = (postId, commentId) => async dispatch => {
     });
   }
 };
-
-// async function getImage(imageId) {
-//   return await axios
-//     .get(`http://localhost:8080/api/post/${imageId}/image`, {
-//       responseType: "arraybuffer"
-//     })
-//     .then(response => Buffer.from(response.data, "binary").toString("base64"));
-// }
-
-// async function getUserProfileImage(userAlias) {
-//   return await axios
-//     .get(`http://localhost:8080/api/profile/${userAlias}/image`, {
-//       responseType: "arraybuffer"
-//     })
-//     .then(response => Buffer.from(response.data, "binary").toString("base64"));
-// }
 
 async function getUserProfileImageUrl(userAlias) {
   return await axios

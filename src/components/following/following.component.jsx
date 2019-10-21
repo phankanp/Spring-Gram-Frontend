@@ -14,7 +14,7 @@ const Following = ({ getProfile, auth, profile: { userProfile, loading } }) => {
   useEffect(() => {
     getProfile(auth.user.alias);
 
-  }, [getProfile]);
+  }, [getProfile, auth.user.alias]);
 
   return !auth.isAuthenticated ? null : loading ? (
     <div className="d-flex justify-content-center">

@@ -21,10 +21,8 @@ export const getProfile = userAlias => async dispatch => {
     res.data.userProfileImage = userProfileImage;
 
     for (const arr of res.data.posts) {
-      // const postImage = await getImage(arr.id);
       const userProfileImage = await getProfileImageUrl(userAlias);
 
-      // arr.image = postImage;
       arr.userProfileImage = userProfileImage
     }
     
@@ -46,9 +44,15 @@ export const addFollow = userId => async dispatch => {
       `http://localhost:8080/api/profile/follow/${userId}`
     );
 
-    const userProfileImage = await getUserProfileImage(res.data.userAlias);
+    const userProfileImage = await getProfileImageUrl(res.data.userAlias);
 
     res.data.userProfileImage = userProfileImage;
+
+    for (const arr of res.data.following) {
+      const getFollowingUserProfileImageUrl = await getProfileImageUrl(arr.userAlias);
+
+      arr.getFollowingUserProfileImageUrl= getFollowingUserProfileImageUrl
+    }
 
     dispatch({
       type: profileActionTypes.ADD_FOLLOW,
@@ -68,9 +72,15 @@ export const removeFollow = userId => async dispatch => {
       `http://localhost:8080/api/profile/unfollow/${userId}`
     );
 
-    const userProfileImage = await getUserProfileImage(res.data.userAlias);
+    const userProfileImage = await getProfileImageUrl(res.data.userAlias);
 
     res.data.userProfileImage = userProfileImage;
+
+    for (const arr of res.data.following) {
+      const getFollowingUserProfileImageUrl = await getProfileImageUrl(arr.userAlias);
+
+      arr.getFollowingUserProfileImageUrl= getFollowingUserProfileImageUrl
+    }
 
     dispatch({
       type: profileActionTypes.REMOVE_FOLLOW,
@@ -111,22 +121,6 @@ export const editProfile = (profile, history) => async dispatch => {
     });
   }
 };
-
-// async function getImage(imageId) {
-//   return await axios
-//     .get(`http://localhost:8080/api/post/${imageId}/image`, {
-//       responseType: "arraybuffer"
-//     })
-//     .then(response => Buffer.from(response.data, "binary").toString("base64"));
-// }
-
-async function getUserProfileImage(userAlias) {
-  return await axios
-    .get(`http://localhost:8080/api/profile/${userAlias}/image`, {
-      responseType: "arraybuffer"
-    })
-    .then(response => Buffer.from(response.data, "binary").toString("base64"));
-}
 
 async function getProfileImageUrl(userAlias) {
   return await axios
