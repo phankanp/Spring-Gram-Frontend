@@ -32,7 +32,8 @@ const PostItem = ({
     comments,
     userAlias,
     likeCount,
-    userProfileImage
+    userProfileImage,
+    imageUrl
   },
   addLike,
   removeLike,
@@ -50,7 +51,7 @@ const PostItem = ({
               <img
                 className="rounded-circle float-left fontAwesome border border-info"
                 alt="100x100"
-                src={`data:image/jpeg;base64,${userProfileImage}`}
+                src={userProfileImage}
                 data-holder-rendered="true"
                 style={{ height: "33px", width: "33px" }}
               />
@@ -95,7 +96,7 @@ const PostItem = ({
             ) : null}
           </div>
           <img
-            src={`data:image/jpeg;base64,${image}`}
+            src={imageUrl}
             className="card-img-top rounded-0"
             alt="..."
           />
@@ -124,7 +125,7 @@ const PostItem = ({
                   onClick={e => addLike(id)}
                 />
               )}
-              {likes.length} likes
+              {likes.length} Likes
               <small className="creation-date float-right">
                 <i>
                   Created on{" "}

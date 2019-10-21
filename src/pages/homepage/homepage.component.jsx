@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
@@ -14,12 +14,12 @@ const HomePage = ({ auth }) => {
         <div>
           <Post />
         </div>
-      ) : (
+      ) : (    
         <div className="row no-gutters">
           <div className="col-sm-8">
             <Post />
           </div>
-          <div className="col-sm-4">
+          <div className="col-sm-4 pl-3" >
             <Following auth={auth} />
           </div>
         </div>

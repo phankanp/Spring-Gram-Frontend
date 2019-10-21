@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
@@ -23,6 +23,7 @@ const Profile = ({
   props
 }) => {
   const userAlias = props.match.params.alias;
+
   useEffect(() => {
     getProfile(userAlias);
   }, [getProfile]);
@@ -42,7 +43,7 @@ const Profile = ({
           <img
             className="rounded-circle float-left shadow-lg"
             alt="100x100"
-            src={`data:image/jpeg;base64,${userProfile.userProfileImage}`}
+            src={userProfile.userProfileImage}
             data-holder-rendered="true"
             style={{ height: "200px", width: "200px" }}
           />
@@ -71,15 +72,15 @@ const Profile = ({
             <p>
               <b style={{ color: "white" }}>
                 {" "}
-                {userProfile.posts.length} posts
+                {userProfile.posts.length} Posts
               </b>
               <b style={{ color: "white" }}>
                 {" "}
-                {userProfile.followers.length} followers{" "}
+                {userProfile.followers.length} Followers{" "}
               </b>
               <b style={{ color: "white" }}>
                 {" "}
-                {userProfile.following.length} following{" "}
+                {userProfile.following.length} Following{" "}
               </b>
             </p>
             {auth.user === null || auth.user.alias === userAlias ? null : auth
@@ -120,6 +121,31 @@ const Profile = ({
           <GalleryItem key={i} post={post} />
         ))}
       </div>
+      {userProfile.following.length > 0 ? (
+        <div>
+        <h1 className="text-white text-center mt-5">Following</h1>
+        <hr />
+        <div className="row justify-content-center text-center px-auto">
+        {userProfile.following.map((profile, i) => (
+          <Link className="" to={`/profile/${profile.userAlias}`}>
+            <img
+              className="rounded-circle border border-info m-4"
+              alt="100x100"
+              src={profile.getFollowingUserProfileImageUrl}
+              data-holder-rendered="true"
+              style={{ height: "80px", width: "80px" }}
+            />
+            <div
+            className="vertical-center"
+            style={{ marginBottom: "20px", color: "black" }}
+          >
+            <h5>{profile.userAlias}</h5>
+          </div>
+          </Link>
+        ))}
+        </div>
+        </div>
+      ) :(<div></div>)}
     </div>
   );
 };

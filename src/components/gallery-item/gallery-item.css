@@ -1,48 +1,53 @@
-.galleryItemImgFluid {
-  height: 200;
-  width: 400;
-  margin: 15px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+.overlayRow{
+  margin-top: 25%;
 }
 
-.hvr-grow {
-  display: inline-block;
-  vertical-align: middle;
-  -webkit-transform: perspective(1px) translateZ(0);
-  transform: perspective(1px) translateZ(0);
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-  -webkit-transition-duration: 0.3s;
-  transition-duration: 0.3s;
-  -webkit-transition-property: transform;
-  transition-property: transform;
-}
-.hvr-grow:hover,
-.hvr-grow:focus,
-.hvr-grow:active {
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
+.overlayHeart{
+  color: red;
 }
 
-.imageButton {
-  background: transparent;
-  border: none;
-  outline: none;
+.overlayComment{
+  color: blue;
 }
 
-.imageButton:hover {
-  color: transparent;
-  background-color: transparent;
-  border-color: transparent;
-}
-
-.imageButton:hover,
-.imageButton:focus,
-.imageButton:active,
-.imageButton:active:focus:not(:disabled):not(.disabled),
-.imageButton:focus,
-.imageButton:active,
-.imageButton:hover {
-  box-shadow: none !important;
-  outline: 0;
-  background: transparent;
-}
+.hovereffect {
+  width:100%;
+  height:100%;
+  float:left;
+  overflow:hidden;
+  position:relative;
+  text-align:center;
+  cursor:default;
+  }
+  
+  .hovereffect .overlay {
+  width:100%;
+  height:100%;
+  position:absolute;
+  overflow:hidden;
+  top:0;
+  left:0;
+  opacity:0;
+  background-color:rgba(0,0,0,0.5);
+  -webkit-transition:all .4s ease-in-out;
+  transition:all .4s ease-in-out
+  }
+  
+  .hovereffect img {
+  display:block;
+  position:relative;
+  -webkit-transition:all .4s linear;
+  transition:all .4s linear;
+  }
+  
+  .hovereffect:hover img {
+  -ms-transform:scale(1.2);
+  -webkit-transform:scale(1.2);
+  transform:scale(1.2);
+  }
+  
+  .hovereffect:hover .overlay {
+  opacity:5;
+  filter:alpha(opacity=100);
+  }
+  

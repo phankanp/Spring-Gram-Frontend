@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/js/dist/dropdown";
+import "bootstrap/js/dist/dropdown.js";
 import "jquery";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";

@@ -16,9 +16,9 @@ export const createPost = (postData, history) => async dispatch => {
       config
     );
 
-    const postImage = await getImage(res.data.id);
+    // const postImage = await getImage(res.data.id);
 
-    res.data.image = postImage;
+    // res.data.image = postImage;
 
     dispatch({
       type: postActionTypes.CREATE_POST,
@@ -48,11 +48,8 @@ export const getPosts = () => async dispatch => {
     const res = await axios.get("http://localhost:8080/api/post/");
 
     for (const arr of res.data) {
-      console.log(arr)
-      const postImage = await getImage(arr.id);
-      const userProfileImage = await getUserProfileImage(arr.userAlias);
-
-      arr.image = postImage;
+      const userProfileImage = await getUserProfileImageUrl(arr.userAlias);
+    
       arr.userProfileImage = userProfileImage;
     }
 
@@ -170,18 +167,26 @@ export const deleteComment = (postId, commentId) => async dispatch => {
   }
 };
 
-async function getImage(imageId) {
-  return await axios
-    .get(`http://localhost:8080/api/post/${imageId}/image`, {
-      responseType: "arraybuffer"
-    })
-    .then(response => Buffer.from(response.data, "binary").toString("base64"));
-}
+// async function getImage(imageId) {
+//   return await axios
+//     .get(`http://localhost:8080/api/post/${imageId}/image`, {
+//       responseType: "arraybuffer"
+//     })
+//     .then(response => Buffer.from(response.data, "binary").toString("base64"));
+// }
 
-async function getUserProfileImage(userAlias) {
+// async function getUserProfileImage(userAlias) {
+//   return await axios
+//     .get(`http://localhost:8080/api/profile/${userAlias}/image`, {
+//       responseType: "arraybuffer"
+//     })
+//     .then(response => Buffer.from(response.data, "binary").toString("base64"));
+// }
+
+async function getUserProfileImageUrl(userAlias) {
   return await axios
-    .get(`http://localhost:8080/api/profile/${userAlias}/image`, {
-      responseType: "arraybuffer"
-    })
-    .then(response => Buffer.from(response.data, "binary").toString("base64"));
+    .get(`http://localhost:8080/api/profile/${userAlias}/imageUrl`)
+    .then(response => {
+      return response.data
+    }) 
 }
