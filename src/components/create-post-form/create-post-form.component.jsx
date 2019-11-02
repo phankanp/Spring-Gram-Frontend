@@ -3,21 +3,29 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
 
+import Map from '../maps-autocomplete/maps-autocomplete.component'
+
 import { createPost } from "../../redux/post/post.actions";
 
 const PostForm = ({ props, createPost, history }) => {
   const [postData, setPostData] = useState({
     image: "",
-    caption: null
+    caption: null,
+    location: null
   });
 
-  const { image, caption } = postData;
-
+  const { image, caption, location } = postData;
+  
   const onFileChange = e =>
     setPostData({ ...postData, [e.target.name]: e.target.files[0] });
 
   const onChange = e =>
     setPostData({ ...postData, [e.target.name]: e.target.value });
+  
+  const updateLocation = location => {
+    setPostData({ ...postData, location: location });
+    console.log(location)
+  }
 
   const onSubmit = async e => {
     e.preventDefault();
@@ -25,6 +33,7 @@ const PostForm = ({ props, createPost, history }) => {
 
     newPost.append("image", image);
     newPost.append("caption", caption);
+    newPost.append("location", location);
 
     createPost(newPost, history);
   };
@@ -85,6 +94,13 @@ const PostForm = ({ props, createPost, history }) => {
                     onChange={e => onChange(e)}
                   />
                 </div>
+                <label
+                    htmlFor=""
+                    style={{ color: "white" }}
+                  >
+                    Location
+                  </label>
+                <Map updateLocation={updateLocation}/>
                 <button type="submit" className="btn btn-dark btn-block mt-4">
                   Submit
                 </button>

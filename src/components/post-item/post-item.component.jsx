@@ -14,9 +14,10 @@ import {
   faUser,
   faHeart as farHeartFilled,
   faTrashAlt,
-  faEllipsisH
+  faEllipsisH,
+  faMapMarker
 } from "@fortawesome/free-solid-svg-icons";
-import { faHeart } from "@fortawesome/free-regular-svg-icons";
+import { faHeart, faCompass } from "@fortawesome/free-regular-svg-icons";
 
 import "./post-item.css";
 
@@ -33,7 +34,8 @@ const PostItem = ({
     userAlias,
     likeCount,
     userProfileImage,
-    imageUrl
+    imageUrl,
+    location
   },
   addLike,
   removeLike,
@@ -138,6 +140,18 @@ const PostItem = ({
               <FontAwesomeIcon icon={faUser} className="fontAwesome" />"
               {caption}"
             </h5>
+            
+            <small>
+              <i>
+                {location != null ? (
+                  <span>
+                  <FontAwesomeIcon icon={faCompass} className="fontAwesome" />
+                  {location}
+                  </span>
+                ) : null}
+              </i>
+            </small>
+
             <ul className="list-group rounded-0">
               {comments === null ? (
                 <li className="list-group-item rounded-0">
