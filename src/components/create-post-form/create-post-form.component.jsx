@@ -51,7 +51,7 @@ const PostForm = ({ props, createPost, history }) => {
               <form onSubmit={e => onSubmit(e)}>
                 <div className="form-group">
                   <label htmlFor="inputGroupFile01" style={{ color: "white" }}>
-                    Choose Image
+                    Choose Image*
                   </label>
                   <div className="input-group mb-3">
                     <div className="custom-file">
@@ -82,7 +82,7 @@ const PostForm = ({ props, createPost, history }) => {
                     htmlFor="formGroupExampleInput"
                     style={{ color: "white" }}
                   >
-                    Caption
+                    Caption*
                   </label>
                   <input
                     type="text"
@@ -104,6 +104,7 @@ const PostForm = ({ props, createPost, history }) => {
                 <button type="submit" className="btn btn-dark btn-block mt-4">
                   Submit
                 </button>
+                <small className="text-white">Fields marked with * are required</small>
               </form>
             </div>
           </div>

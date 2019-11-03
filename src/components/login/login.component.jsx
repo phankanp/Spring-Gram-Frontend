@@ -4,6 +4,7 @@ import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { login } from "../../redux/auth/auth.actions";
+import GuestLogin from "./guestLogin.component";
 
 import formLogo from "../../images/instagram.png";
 
@@ -78,6 +79,7 @@ const Login = ({ login, isAuthenticated }, props) => {
                       <Link to="/register">Click to register!</Link>
                     </small>
                   </form>
+                  <GuestLogin />
                 </div>
               </div>
             </div>

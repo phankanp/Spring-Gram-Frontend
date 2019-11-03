@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 
 import GalleryItem from "../gallery-item/gallery-item.component";
 
+import "./profile.css";
+
 import {
   getProfile,
   addFollow,
@@ -30,27 +32,19 @@ const Profile = ({
 
   return loading ? (
     <div class="d-flex justify-content-center">
-      <FontAwesomeIcon
-        icon={faSpinner}
-        className="fa-spin"
-        style={{ height: "50px", width: "50px", color: "white" }}
-      />
+      <FontAwesomeIcon icon={faSpinner} className="fa-spin faSpinProfile" />
     </div>
   ) : (
     <div className="container ">
       <div className="row">
         <div className="col-md-12 align-self-center">
           <img
-            className="rounded-circle float-left shadow-lg"
+            className="rounded-circle float-left shadow-lg profileImg"
             alt="100x100"
             src={userProfile.userProfileImage}
             data-holder-rendered="true"
-            style={{ height: "200px", width: "200px" }}
           />
-          <div
-            className="vertical-center"
-            style={{ marginLeft: "260px", marginTop: "50px" }}
-          >
+          <div className="vertical-center profileUsername">
             <h2>
               {auth.user === null || auth.user.alias !== userAlias ? (
                 <b style={{ color: "white" }}>{userAlias}</b>
@@ -60,8 +54,7 @@ const Profile = ({
                   <Link className="" to="/profile/edit">
                     <FontAwesomeIcon
                       icon={faUserEdit}
-                      className="fontAwesome"
-                      style={{ paddingLeft: "10px", color: "limegreen" }}
+                      className="fontAwesome profileEditLink"
                     />
                   </Link>
                 </b>
@@ -123,29 +116,27 @@ const Profile = ({
       </div>
       {userProfile.following.length > 0 ? (
         <div>
-        <h1 className="text-white text-center mt-5">Following</h1>
-        <hr />
-        <div className="row justify-content-center text-center px-auto">
-        {userProfile.following.map((profile, i) => (
-          <Link className="" to={`/profile/${profile.userAlias}`}>
-            <img
-              className="rounded-circle border border-info m-4"
-              alt="100x100"
-              src={profile.getFollowingUserProfileImageUrl}
-              data-holder-rendered="true"
-              style={{ height: "80px", width: "80px" }}
-            />
-            <div
-            className="vertical-center"
-            style={{ marginBottom: "20px", color: "black" }}
-          >
-            <h5>{profile.userAlias}</h5>
+          <h1 className="text-white text-center mt-5">Following</h1>
+          <hr />
+          <div className="row justify-content-center text-center px-auto">
+            {userProfile.following.map((profile, i) => (
+              <Link className="mx-auto" to={`/profile/${profile.userAlias}`}>
+                <img
+                  className="rounded-circle border border-info m-4 profileFollowingImage"
+                  alt="100x100"
+                  src={profile.getFollowingUserProfileImageUrl}
+                  data-holder-rendered="true"
+                />
+                <div className="vertical-center mb-3 text-white">
+                  <h5>{profile.userAlias}</h5>
+                </div>
+              </Link>
+            ))}
           </div>
-          </Link>
-        ))}
         </div>
-        </div>
-      ) :(<div></div>)}
+      ) : (
+        <div></div>
+      )}
     </div>
   );
 };

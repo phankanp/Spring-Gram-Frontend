@@ -14,13 +14,15 @@ const HomePage = ({ auth }) => {
         <div>
           <Post />
         </div>
-      ) : (    
-        <div className="row no-gutters">
+      ) : (
+        <div className="row">
           <div className="col-sm-8">
             <Post />
           </div>
-          <div className="col-sm-4 pl-3" >
-            <Following auth={auth} />
+          <div className="col-sm-4 col-sm-offset-1">
+            <div className="col-sm-4 position-fixed">
+              <Following auth={auth} />
+            </div>
           </div>
         </div>
       )}

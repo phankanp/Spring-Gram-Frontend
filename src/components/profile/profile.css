@@ -1,0 +1,25 @@
+.faSpinProfile {
+  height: 300px;
+  width: 300px;
+  color: white;
+}
+
+.profileImg {
+  height: 200px;
+  width: 200px;
+}
+
+.profileUsername {
+  margin-left: 260px;
+  margin-top: 50px;
+}
+
+.profileEditLink {
+  padding-left: 10px;
+  color: limegreen;
+}
+
+.profileFollowingImage {
+  height: 80px;
+  width: 80px;
+}

@@ -38,7 +38,7 @@ const GalleryItem = ({
         >
           <img
             src={imageUrl}
-            className="img-fluid galleryItemImgFluid"
+            className="img-fluid galleryItemImgFluid mb-4"
             alt=""
           ></img>
           <div class="overlay">

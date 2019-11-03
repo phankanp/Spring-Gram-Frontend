@@ -1,8 +1,7 @@
-import React, { useEffect, useCallback } from "react";
+import React, { useEffect } from "react";
 
 import PlacesAutocomplete, {
-  geocodeByAddress,
-  getLatLng
+  geocodeByAddress
 } from "react-places-autocomplete";
 
 const Map = props => {

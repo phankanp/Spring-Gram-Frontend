@@ -13,7 +13,6 @@ import "./following.css";
 const Following = ({ getProfile, auth, profile: { userProfile, loading } }) => {
   useEffect(() => {
     getProfile(auth.user.alias);
-
   }, [getProfile, auth.user.alias]);
 
   return !auth.isAuthenticated ? null : loading ? (
@@ -25,25 +24,24 @@ const Following = ({ getProfile, auth, profile: { userProfile, loading } }) => {
       />
     </div>
   ) : (
-    <div class="card d-flex justify-content-sm-middle justify-content-center text-center following-card mx-auto shadow-lg  rounded-0" id="followingComponent">
+    <div
+    className="card d-flex justify-content-sm-middle justify-content-center text-center following-card mx-auto shadow-lg  rounded-0"
+      id="followingComponent"
+    >
       <div className="card-header">
         <b>Following</b>
       </div>
       <div className="card-body">
-        <div className="col-md-12 align-self-center">
+        <div className="col-md-12 align-self-center scroll">
           {userProfile.following.map((profile, i) => (
-            <Link className="" to={`/profile/${profile.userAlias}`} >
+            <Link className="mx-auto" to={`/profile/${profile.userAlias}`}>
               <img
-                className="rounded-circle border border-info"
+                className="rounded-circle border border-info followingImg"
                 alt="100x100"
                 src={profile.getFollowingUserProfileImageUrl}
                 data-holder-rendered="true"
-                style={{ height: "60px", width: "60px" }}
               />
-              <div
-                className="vertical-center"
-                style={{ marginBottom: "20px", color: "black" }}
-              >
+              <div className="vertical-center text-dark mb-4 ">
                 <h5>{profile.userAlias}</h5>
               </div>
             </Link>

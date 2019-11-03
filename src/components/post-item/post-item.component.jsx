@@ -14,8 +14,7 @@ import {
   faUser,
   faHeart as farHeartFilled,
   faTrashAlt,
-  faEllipsisH,
-  faMapMarker
+  faEllipsisH
 } from "@fortawesome/free-solid-svg-icons";
 import { faHeart, faCompass } from "@fortawesome/free-regular-svg-icons";
 
@@ -68,9 +67,9 @@ const PostItem = ({
             {!auth.loading &&
             auth.user !== null &&
             userAlias === auth.user.alias ? (
-              <div class="btn-group float-right ">
+              <div className="btn-group float-right ">
                 <button
-                  class="btn btnCustom btn-sm dropdown-toggle"
+                className="btn btnCustom btn-sm dropdown-toggle"
                   type="button"
                   data-toggle="dropdown"
                   aria-haspopup="true"
@@ -79,7 +78,7 @@ const PostItem = ({
                   <FontAwesomeIcon icon={faEllipsisH} className="fontAwesome" />
                 </button>
                 <div
-                  class="dropdown-menu dropdown-menu-right"
+                className="dropdown-menu dropdown-menu-right"
                   style={{ textAlign: "center" }}
                 >
                   <button
@@ -141,7 +140,7 @@ const PostItem = ({
               {caption}"
             </h5>
             
-            <small>
+            <small className="mb-3">
               <i>
                 {location != null ? (
                   <span>

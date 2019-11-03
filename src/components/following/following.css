@@ -19,3 +19,13 @@
     display: none;
   }
 }
+
+.scroll {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.followingImg{
+  height: 60px;
+  width: 60px;
+}
