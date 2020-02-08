@@ -14,11 +14,12 @@ const CommentItem = ({
   auth,
   deleteComment
 }) => {
-  return auth.loading || auth.user === null ? null : (
+  return (
     <li className="list-group-item rounded-0">
       <b>{userAlias}</b> {comment}
       {!auth.loading &&
         auth.isAuthenticated &&
+        auth.user !== null &&
         userAlias === auth.user.alias && (
           <FontAwesomeIcon
             icon={faTimes}
@@ -41,7 +42,4 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(
-  mapStateToProps,
-  { deleteComment }
-)(CommentItem);
+export default connect(mapStateToProps, { deleteComment })(CommentItem);

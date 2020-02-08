@@ -19,3 +19,8 @@ form label {
 #toRegister {
   margin-bottom: 20px;
 }
+
+.loginIcon {
+  width: 80px;
+  height: 80px;
+}

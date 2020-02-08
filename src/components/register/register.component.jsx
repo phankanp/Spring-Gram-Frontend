@@ -7,7 +7,7 @@ import { setAlert } from "../../redux/alert/alert.actions";
 import { register } from "../../redux/auth/auth.actions";
 
 import "./register.css";
-import formLogo from "../../images/instagram.png";
+import formLogo from "../../images/camera-icon.png";
 
 const Register = ({ setAlert, register, isAuthenticated }) => {
   const [formData, setFormData] = useState({
@@ -46,7 +46,11 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
           >
             <div className="text-center">
               <h1>Register!</h1>
-              <img src={formLogo} alt="registration from logo" />
+              <img
+                src={formLogo}
+                alt="registration from logo"
+                className="registerIcon"
+              />
               <div>
                 <div className="col-sm-12 text-left">
                   <form onSubmit={e => onSubmit(e)}>
@@ -141,7 +145,4 @@ const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated
 });
 
-export default connect(
-  mapStateToProps,
-  { setAlert, register }
-)(Register);
+export default connect(mapStateToProps, { setAlert, register })(Register);

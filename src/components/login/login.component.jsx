@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { login } from "../../redux/auth/auth.actions";
 import GuestLogin from "./guestLogin.component";
 
-import formLogo from "../../images/instagram.png";
+import formLogo from "../../images/camera-icon.png";
 
 import "./login.css";
 
@@ -40,7 +40,11 @@ const Login = ({ login, isAuthenticated }, props) => {
           >
             <div className="text-center">
               <h1>Sign In!</h1>
-              <img src={formLogo} alt="registration from logo" />
+              <img
+                src={formLogo}
+                alt="registration from logo"
+                className="loginIcon"
+              />
               <div>
                 <div className="col-sm-12 text-left">
                   <form onSubmit={e => onSubmit(e)}>
@@ -99,7 +103,4 @@ const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated
 });
 
-export default connect(
-  mapStateToProps,
-  { login }
-)(Login);
+export default connect(mapStateToProps, { login })(Login);

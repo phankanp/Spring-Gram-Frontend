@@ -33,7 +33,7 @@ const Post = ({ getPosts, post: { posts, loading }, auth }) => {
 Post.propTypes = {
   getPosts: PropTypes.func.isRequired,
   post: PropTypes.object.isRequired,
-  auth: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -41,7 +41,4 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(
-  mapStateToProps,
-  { getPosts }
-)(Post);
+export default connect(mapStateToProps, { getPosts })(Post);

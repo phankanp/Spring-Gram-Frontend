@@ -69,7 +69,7 @@ const PostItem = ({
             userAlias === auth.user.alias ? (
               <div className="btn-group float-right ">
                 <button
-                className="btn btnCustom btn-sm dropdown-toggle"
+                  className="btn btnCustom btn-sm dropdown-toggle"
                   type="button"
                   data-toggle="dropdown"
                   aria-haspopup="true"
@@ -78,7 +78,7 @@ const PostItem = ({
                   <FontAwesomeIcon icon={faEllipsisH} className="fontAwesome" />
                 </button>
                 <div
-                className="dropdown-menu dropdown-menu-right"
+                  className="dropdown-menu dropdown-menu-right"
                   style={{ textAlign: "center" }}
                 >
                   <button
@@ -96,11 +96,7 @@ const PostItem = ({
               </div>
             ) : null}
           </div>
-          <img
-            src={imageUrl}
-            className="card-img-top rounded-0"
-            alt="..."
-          />
+          <img src={imageUrl} className="card-img-top rounded-0" alt="..." />
           <div className="card-body d-flex flex-column">
             <h6 className="card-title">
               {!auth.loading && auth.user === null ? (
@@ -139,13 +135,13 @@ const PostItem = ({
               <FontAwesomeIcon icon={faUser} className="fontAwesome" />"
               {caption}"
             </h5>
-            
+
             <small className="mb-3">
               <i>
                 {location != null ? (
                   <span>
-                  <FontAwesomeIcon icon={faCompass} className="fontAwesome" />
-                  {location}
+                    <FontAwesomeIcon icon={faCompass} className="fontAwesome" />
+                    {location}
                   </span>
                 ) : null}
               </i>
@@ -181,7 +177,6 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(
-  mapStateToProps,
-  { addLike, removeLike, deletePost }
-)(PostItem);
+export default connect(mapStateToProps, { addLike, removeLike, deletePost })(
+  PostItem
+);

@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 import { logout } from "../../redux/auth/auth.actions.js";
-import homeLogo from "../../images/instagram-home.svg";
+import homeLogo from "../../images/camera-icon.png";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faImages, faUser } from "@fortawesome/free-regular-svg-icons";
@@ -109,7 +109,4 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(
-  mapStateToProps,
-  { logout }
-)(Navbar);
+export default connect(mapStateToProps, { logout })(Navbar);
