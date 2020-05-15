@@ -1,5 +1,4 @@
-# Spring-Gram - [Live App!](https://bit.ly/Heroku-Spring-Gram)
-
+# Spring-Gram
 React Client with Spring Boot REST API. 
 - Social media web app for sharing photos. 
 
